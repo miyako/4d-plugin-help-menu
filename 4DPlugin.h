@@ -8,6 +8,10 @@
  #
  # --------------------------------------------------------------------------------*/
 
+#if VERSIONWIN
+#include "shlwapi.h"
+#endif
+
 // --- Help Menu
 void HELP_SET_ENABLED(sLONG_PTR *pResult, PackagePtr pParams);
 void HELP_Get_enabled(sLONG_PTR *pResult, PackagePtr pParams);
