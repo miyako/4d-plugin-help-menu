@@ -1,6 +1,24 @@
 # 4d-plugin-help-menu
 Forcefully disable the Help menu; use with caution!
 
+##Platform
+
+| carbon | cocoa | win32 | win64 |
+|:------:|:-----:|:---------:|:---------:|
+|🆗|🆗|🆗|🆗|
+
+Commands
+---
+
+```c
+// --- Help Menu
+HELP_SET_ENABLED
+HELP_Get_enabled
+```
+
+Examples
+---
+
 ```
 HELP SET ENABLED (False)
 $enabled:=HELP Get enabled 
