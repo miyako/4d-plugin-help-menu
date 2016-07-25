@@ -133,7 +133,7 @@ void OnStartup(){
 
 void OnCloseProcess(){
     if(IsProcessOnExit()){
-        Help::disable();
+        Help::enable();
 #if VERSIONMAC	
 #if !__LP64__
     DisposeMenu(Help::helpMenuRef);
