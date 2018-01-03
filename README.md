@@ -1,32 +1,25 @@
 # 4d-plugin-help-menu
 Forcefully disable the Help menu; use with caution!
 
-##Platform
+### Platform
 
 | carbon | cocoa | win32 | win64 |
 |:------:|:-----:|:---------:|:---------:|
-|🆗|🆗|🆗|🆗|
+|<img src="https://cloud.githubusercontent.com/assets/1725068/22371562/1b091f0a-e4db-11e6-8458-8653954a7cce.png" width="24" height="24" />|<img src="https://cloud.githubusercontent.com/assets/1725068/22371562/1b091f0a-e4db-11e6-8458-8653954a7cce.png" width="24" height="24" />|<img src="https://cloud.githubusercontent.com/assets/1725068/22371562/1b091f0a-e4db-11e6-8458-8653954a7cce.png" width="24" height="24" />|<img src="https://cloud.githubusercontent.com/assets/1725068/22371562/1b091f0a-e4db-11e6-8458-8653954a7cce.png" width="24" height="24" />|
 
-Commands
----
+### Discussion
 
-```c
-// --- Help Menu
-HELP_SET_ENABLED
-HELP_Get_enabled
-```
-
-Examples
----
-
-```
-HELP SET ENABLED (False)
-$enabled:=HELP Get enabled 
-TRACE
-HELP SET ENABLED (True)
-$enabled:=HELP Get enabled 
-```
-
-About
----
 Cocoa code is used for v14 and 64 bits. Carbon code for older 4D.
+
+---
+
+## Syntax
+
+```
+HELP SET ENABLED (enabled)
+enabled:=HELP Get enabled
+```
+
+Parameter|Type|Description
+------------|------------|----
+enabled|LONGINT|
