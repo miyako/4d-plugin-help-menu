@@ -9,7 +9,9 @@ Forcefully disable the Help menu; use with caution!
 
 ### Discussion
 
-Cocoa code is used for v14 and 64 bits. Carbon code for older 4D.
+Cocoa code is used for v14 64 bit. Carbon code for older 4D.  
+
+Evidently not working for 4D Cocoa (v16 64 bit).
 
 ---
 
