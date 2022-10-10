@@ -107,8 +107,6 @@ static HWND getMDI() {
         }
     } while (mdi);
 
-    wasMDI = (mdi != NULL);
-
     return mdi;
 }
 
