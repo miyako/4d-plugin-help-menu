@@ -1,0 +1,16 @@
+{
+    "name": "Help Menu",
+    "id": 20000,
+    "commands": [
+        {
+            "theme": "Help Menu",
+            "syntax": "HELP SET ENABLED(&L)",
+            "threadSafe": false
+        },
+        {
+            "theme": "Help Menu",
+            "syntax": "HELP Get enabled:L",
+            "threadSafe": true
+        }
+    ]
+}

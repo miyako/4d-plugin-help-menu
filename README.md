@@ -1,27 +1,16 @@
+![version](https://img.shields.io/badge/version-19%2B-5682DF)
+![platform](https://img.shields.io/static/v1?label=platform&message=mac-intel%20|%20mac-arm%20|%20win-64&color=blue)
+[![license](https://img.shields.io/github/license/miyako/4d-plugin-help-menu)](LICENSE)
+![downloads](https://img.shields.io/github/downloads/miyako/4d-plugin-help-menu/total)
+
 # 4d-plugin-help-menu
-Forcefully disable the Help menu; use with caution!
 
-### Platform
+On Mac: 
 
-| carbon | cocoa | win32 | win64 |
-|:------:|:-----:|:---------:|:---------:|
-|<img src="https://cloud.githubusercontent.com/assets/1725068/22371562/1b091f0a-e4db-11e6-8458-8653954a7cce.png" width="24" height="24" />|<img src="https://cloud.githubusercontent.com/assets/1725068/22371562/1b091f0a-e4db-11e6-8458-8653954a7cce.png" width="24" height="24" />|<img src="https://cloud.githubusercontent.com/assets/1725068/22371562/1b091f0a-e4db-11e6-8458-8653954a7cce.png" width="24" height="24" />|<img src="https://cloud.githubusercontent.com/assets/1725068/22371562/1b091f0a-e4db-11e6-8458-8653954a7cce.png" width="24" height="24" />|
+> AppKit installs Spotlight menu items on the menu of its choosing. To suppress Spotlight help items altogether, specify a menu that doesn’t appear on the menu bar.
 
-### Discussion
+https://developer.apple.com/documentation/appkit/nsapplication/1428644-helpmenu
 
-Cocoa code is used for v14 64 bit. Carbon code for older 4D.  
+On Windows:
 
-Evidently not working for 4D Cocoa (v16 64 bit).
-
----
-
-## Syntax
-
-```
-HELP SET ENABLED (enabled)
-enabled:=HELP Get enabled
-```
-
-Parameter|Type|Description
-------------|------------|----
-enabled|LONGINT|
+Disable the Help menu of the MDI window.
