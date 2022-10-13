@@ -11,7 +11,7 @@ On Mac:
 
 https://developer.apple.com/documentation/appkit/nsapplication/1428644-helpmenu
 
-also remove all items of the help menu.
+also [remove all items](https://developer.apple.com/documentation/appkit/nsmenu/1518234-removeallitems?language=objc) of the help menu.
 
 "enable" is not implemented on Mac. you need to restart 4D.
 
