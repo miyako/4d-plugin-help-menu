@@ -12,10 +12,12 @@ On Mac:
 
 https://developer.apple.com/documentation/appkit/nsapplication/1428644-helpmenu
 
-also [remove all items](https://developer.apple.com/documentation/appkit/nsmenu/1518234-removeallitems?language=objc) of the help menu.
+Also [remove all items](https://developer.apple.com/documentation/appkit/nsmenu/1518234-removeallitems?language=objc) of the help menu.
 
-"enable" is not implemented on Mac. you need to restart 4D.
+Enabling is not implemented on Mac. you need to restart 4D.
 
 On Windows:
 
 Disable the Help menu of the MDI window.
+
+You might need to defer the command on startup (see sample code) especially on Windows.
