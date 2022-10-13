@@ -4,6 +4,7 @@
 ![downloads](https://img.shields.io/github/downloads/miyako/4d-plugin-help-menu/total)
 
 # 4d-plugin-help-menu
+Forcefully disable the Help menu; use with caution!
 
 On Mac: 
 
