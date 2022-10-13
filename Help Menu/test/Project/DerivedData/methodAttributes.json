@@ -1,7 +1,14 @@
 {
 	"methods": {
-		"メソッド10": {
-			"timeStamp": "2022-10-10T22:37:48.000Z"
+		"CHECK": {
+			"timeStamp": "2022-10-13T15:35:29.688Z"
+		},
+		"TEST": {
+			"timeStamp": "2022-10-13T15:10:57.623Z",
+			"attributes": {
+				"invisible": true,
+				"preemptive": "incapable"
+			}
 		}
 	}
 }

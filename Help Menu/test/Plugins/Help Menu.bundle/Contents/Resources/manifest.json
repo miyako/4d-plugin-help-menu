@@ -10,7 +10,7 @@
         {
             "theme": "Help Menu",
             "syntax": "HELP Get enabled:L",
-            "threadSafe": true
+            "threadSafe": false
         }
     ]
 }
