@@ -2,6 +2,9 @@
 ![platform](https://img.shields.io/static/v1?label=platform&message=mac-intel%20|%20mac-arm%20|%20win-64&color=blue)
 [![license](https://img.shields.io/github/license/miyako/4d-plugin-help-menu)](LICENSE)
 ![downloads](https://img.shields.io/github/downloads/miyako/4d-plugin-help-menu/total)
+![deprecated](https://img.shields.io/badge/-deprecated-inactive)
+
+Use [SET HELP MENU](https://blog.4d.com/create-a-help-menu-with-a-simple-collection/)
 
 # 4d-plugin-help-menu
 Forcefully disable the Help menu; use with caution!
