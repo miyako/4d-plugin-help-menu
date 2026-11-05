@@ -16,31 +16,50 @@ namespace Help
 {
 #if VERSIONWIN
 
-HWND mdiWindowRef;
+HWND mdiWindowRef = NULL;
+
+// the Help menu is assumed to be the last item of the MDI menu bar.
+// returns false when there is no window, no menu bar, or an empty menu bar
+// (GetMenuItemCount returns -1 on failure, which used to wrap to a huge UINT)
+static bool getHelpMenuPosition(HMENU *menu, UINT *pos) {
+    
+    if(!Help::mdiWindowRef) return false;
+    HMENU mdiMenuRef = GetMenu(Help::mdiWindowRef);
+    if(!mdiMenuRef) return false;
+    int count = GetMenuItemCount(mdiMenuRef);
+    if(count <= 0) return false;
+    *menu = mdiMenuRef;
+    *pos = (UINT)(count - 1);
+    return true;
+}
 
 bool isEnabled() {
     
-    HMENU mdiHelpRef = GetMenu(Help::mdiWindowRef);
-    UINT uId = GetMenuItemCount(mdiHelpRef) - 1;
+    HMENU mdiHelpRef = NULL;
+    UINT uId = 0;
+    if(!getHelpMenuPosition(&mdiHelpRef, &uId)) return true;
     
     MENUITEMINFO mii = { 0 };
     mii.cbSize = sizeof(mii);
     mii.fMask = MIIM_STATE;
-    GetMenuItemInfo(mdiHelpRef, uId, FALSE, &mii);
+    if(!GetMenuItemInfo(mdiHelpRef, uId, FALSE, &mii)) return true;
     return !(mii.fState & MFS_DISABLED);
 }
 #else
 
 bool isEnabled() {
     
-    NSMenu *helpMenu = [NSApp helpMenu];
-    
-    if(helpMenu)
-    {
-        return ![[helpMenu title]isEqualToString:@""];
+    @autoreleasepool {
+        
+        NSMenu *helpMenu = [NSApp helpMenu];
+        
+        if(helpMenu)
+        {
+            return ![[helpMenu title]isEqualToString:@""];
+        }
+        
+        return true;
     }
-    
-    return true;
 }
 #endif
 
@@ -52,8 +71,9 @@ void enable()
     //not implemented
     
 #else
-    HMENU mdiHelpRef = GetMenu(Help::mdiWindowRef);
-    UINT uId = GetMenuItemCount(mdiHelpRef) - 1;
+    HMENU mdiHelpRef = NULL;
+    UINT uId = 0;
+    if(!getHelpMenuPosition(&mdiHelpRef, &uId)) return;
     
     EnableMenuItem(mdiHelpRef, uId, MF_BYPOSITION | MF_ENABLED);
     DrawMenuBar(Help::mdiWindowRef);
@@ -65,14 +85,17 @@ void disable()
     
 #if VERSIONMAC
     
-    NSMenu *unusedMenu = [[NSMenu alloc] initWithTitle:@""];
-    
-    NSApplication *theApp = [NSApplication sharedApplication];
-    
-    [theApp.helpMenu removeAllItems];
-    
-    theApp.helpMenu = unusedMenu;
-    [unusedMenu release];
+    @autoreleasepool {
+        
+        NSMenu *unusedMenu = [[NSMenu alloc] initWithTitle:@""];
+        
+        NSApplication *theApp = [NSApplication sharedApplication];
+        
+        [theApp.helpMenu removeAllItems];
+        
+        theApp.helpMenu = unusedMenu;
+        [unusedMenu release];
+    }
     
     /*
      To suppress Spotlight help items altogether,
@@ -81,8 +104,9 @@ void disable()
      */
         
 #else
-    HMENU mdiHelpRef = GetMenu(Help::mdiWindowRef);
-    UINT uId = GetMenuItemCount(mdiHelpRef) - 1;
+    HMENU mdiHelpRef = NULL;
+    UINT uId = 0;
+    if(!getHelpMenuPosition(&mdiHelpRef, &uId)) return;
     
     EnableMenuItem(mdiHelpRef, uId, MF_BYPOSITION | MF_GRAYED);
     DrawMenuBar(Help::mdiWindowRef);
