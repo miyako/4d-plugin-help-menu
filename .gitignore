@@ -1,2 +1,10 @@
-Help Menu/build/*
-Help Menu/test/userPreferences.*
+.DS_Store
+build/
+test/Data/Logs/
+test/Logs/
+test/userPreferences.*
+test/Project/DerivedData/
+test/Plugins/Help Menu.bundle/Contents/MacOS/
+test/Plugins/Help Menu.bundle/Contents/_CodeSignature/
+/Help Menu.dmg
+/Help Menu.zip
