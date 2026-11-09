@@ -19,6 +19,9 @@ Forcefully disable the Help menu of the 4D application; use with caution! On mac
 
 [Releases](https://github.com/miyako/4d-plugin-help-menu/releases)
 
+Maintainers: [manual source Bump and independent Build](.github/RELEASING.md),
+including source authority, offline checks, and create-only publication recovery.
+
 ---
 
 ## Requirements & platform notes
