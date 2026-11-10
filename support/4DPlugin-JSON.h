@@ -103,9 +103,13 @@ void ob_set_b(PA_ObjectRef obj, const wchar_t *_key, bool value);
 void ob_set_0(PA_ObjectRef obj, const wchar_t *_key);
 void ob_set_0(PA_ObjectRef obj, const char *_key);
 bool ob_is_defined(PA_ObjectRef obj, const wchar_t *_key);
+// Successful scalar getters copy values and release the SDK result, including
+// type mismatches. Failed reads leave the text output unchanged.
 bool ob_get_a(PA_ObjectRef obj, const wchar_t *_key, CUTF8String *value);
 bool ob_get_b(PA_ObjectRef obj, const wchar_t *_key);
 double ob_get_n(PA_ObjectRef obj, const wchar_t *_key);
+// Successful object/collection getters return an owning reference: the caller
+// must eventually PA_DisposeObject/PA_DisposeCollection it.
 PA_CollectionRef ob_get_c(PA_ObjectRef obj, const wchar_t *_key);
 // Object getter: mirrors ob_get_c below (eVK_Collection -> PA_GetCollectionVariable)
 // but for eVK_Object -> PA_GetObjectVariable. Did not exist in this header at all;
