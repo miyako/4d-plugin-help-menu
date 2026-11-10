@@ -21,6 +21,8 @@ Forcefully disable the Help menu of the 4D application; use with caution! On mac
 
 Maintainers: [manual source Bump and independent Build](.github/RELEASING.md),
 including source authority, offline checks, and create-only publication recovery.
+The [native ownership audit and synthetic regression](.github/tests/ownership/README.md)
+document dormant helper fixes, bundled SDK contracts, and deferred boundaries.
 
 ---
 

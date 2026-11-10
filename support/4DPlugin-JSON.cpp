@@ -310,6 +310,11 @@ bool ob_get_a(PA_ObjectRef obj, const wchar_t *_key, CUTF8String *value) {
         if(is_defined)
         {
             PA_Variable v = PA_GetObjectProperty(obj, &key);
+            if(PA_GetLastError() != eER_NoErr)
+            {
+                PA_DisposeUnistring(&key);
+                return false;
+            }
             if(PA_GetVariableKind(v) == eVK_Unistring)
             {
                 PA_Unistring uvalue = PA_GetStringVariable(v);
@@ -348,6 +353,7 @@ bool ob_get_a(PA_ObjectRef obj, const wchar_t *_key, CUTF8String *value) {
                 }
 #endif
             }
+            PA_ClearVariable(&v);
         }
 
         PA_DisposeUnistring(&key);
@@ -369,10 +375,16 @@ bool ob_get_b(PA_ObjectRef obj, const wchar_t *_key) {
         if(PA_HasObjectProperty(obj, &key))
         {
             PA_Variable v = PA_GetObjectProperty(obj, &key);
+            if(PA_GetLastError() != eER_NoErr)
+            {
+                PA_DisposeUnistring(&key);
+                return false;
+            }
             if(PA_GetVariableKind(v) == eVK_Boolean)
             {
                 value = PA_GetBooleanVariable(v);
             }
+            PA_ClearVariable(&v);
         }
 
         PA_DisposeUnistring(&key);
@@ -394,10 +406,16 @@ double ob_get_n(PA_ObjectRef obj, const wchar_t *_key) {
         if(PA_HasObjectProperty(obj, &key))
         {
             PA_Variable v = PA_GetObjectProperty(obj, &key);
+            if(PA_GetLastError() != eER_NoErr)
+            {
+                PA_DisposeUnistring(&key);
+                return 0.0;
+            }
             if(PA_GetVariableKind(v) == eVK_Real)
             {
                 value = PA_GetRealVariable(v);
             }
+            PA_ClearVariable(&v);
         }
 
         PA_DisposeUnistring(&key);
@@ -419,9 +437,16 @@ PA_CollectionRef ob_get_c(PA_ObjectRef obj, const wchar_t *_key) {
         if(PA_HasObjectProperty(obj, &key))
         {
             PA_Variable v = PA_GetObjectProperty(obj, &key);
+            if(PA_GetLastError() != eER_NoErr)
+            {
+                PA_DisposeUnistring(&key);
+                return NULL;
+            }
             if(PA_GetVariableKind(v) == eVK_Collection)
             {
                 value = PA_GetCollectionVariable(v);
+            }else{
+                PA_ClearVariable(&v);
             }
         }
 
@@ -443,9 +468,16 @@ PA_ObjectRef ob_get_o(PA_ObjectRef obj, const wchar_t *_key) {
         if(PA_HasObjectProperty(obj, &key))
         {
             PA_Variable v = PA_GetObjectProperty(obj, &key);
+            if(PA_GetLastError() != eER_NoErr)
+            {
+                PA_DisposeUnistring(&key);
+                return NULL;
+            }
             if(PA_GetVariableKind(v) == eVK_Object)
             {
                 value = PA_GetObjectVariable(v);
+            }else{
+                PA_ClearVariable(&v);
             }
         }
 
@@ -468,6 +500,10 @@ void ob_stringify(PA_ObjectRef obj, CUTF8String *value) {
     PA_SetObjectVariable(&_params[0], obj);
     PA_Variable vjson = PA_ExecuteCommandByID( /*JSON Stringify */1217, _params, 1);
     PA_SetObjectVariable(&_params[0], NULL);
+
+    // Failed commands may not initialize an owning result. In particular,
+    // handle allocation failure returns raw kind 0, normalized as text by SDK.
+    if(PA_GetLastError() != eER_NoErr || vjson.fType == 0) return;
 
     if(PA_GetVariableKind(vjson) != eVK_Unistring)
     {
